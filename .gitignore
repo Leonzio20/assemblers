@@ -1,0 +1,12 @@
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Windows shortcuts
+.classpath
+*.project
+*target/
+*.settings/
+.idea/
+*.iml
