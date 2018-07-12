@@ -1,5 +1,8 @@
 package com.sdp.common.assemblers;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
@@ -14,12 +17,15 @@ import java.util.Set;
  */
 final class StandardAssemblerBuilderImpl<S, T> implements StandardAssemblerBuilder<S, T>
 {
+  private static final Logger LOGGER = LogManager.getLogger(StandardAssemblerBuilder.class);
+
   private final Class<S> sourceClass;
   private final Class<T> targetClass;
   private final Set<ValueMapper<S, T, ?>> mappers = new HashSet<>();
 
   StandardAssemblerBuilderImpl(Class<S> sourceClass, Class<T> targetClass)
   {
+    LOGGER.debug("Creating assembler from {} to {}.", sourceClass.getCanonicalName(), targetClass.getCanonicalName());
     this.sourceClass = sourceClass;
     this.targetClass = targetClass;
   }
