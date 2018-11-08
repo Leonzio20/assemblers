@@ -23,9 +23,9 @@ public interface AssemblerBuilder<S, T, V>
    *   to map value
    * @param <X>
    *   type of value to convert to
-   * @return this for chained builder
+   * @return this for chained build
    */
-  <X> AssemblerBuilder<S, T, X> mapWith(@NotNull Function<V, X> mapper);
+  <X> @NotNull AssemblerBuilder<S, T, X> mapWith(@NotNull Function<V, X> mapper);
 
   /**
    * Assembles value using other assembler.
@@ -34,9 +34,9 @@ public interface AssemblerBuilder<S, T, V>
    *   to assemble the value
    * @param <X>
    *   type of {@link Assembler#assemble(Object)} result
-   * @return this for chained builder
+   * @return this for chained build
    */
-  <X> AssemblerBuilder<S, T, X> assembleWith(Assembler<V, X> assembler);
+  <X> @NotNull AssemblerBuilder<S, T, X> assembleWith(@NotNull Assembler<V, X> assembler);
 
   /**
    * Ends standard mappings.
@@ -45,5 +45,5 @@ public interface AssemblerBuilder<S, T, V>
    *   to sets mapped value
    * @return standard builder
    */
-  StandardAssemblerBuilder<S, T> to(Setter<T, V> setter);
+  @NotNull StandardAssemblerBuilder<S, T> to(@NotNull Setter<T, V> setter);
 }

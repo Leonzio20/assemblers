@@ -1,5 +1,7 @@
 package com.sdp.common.assemblers;
 
+import lombok.AllArgsConstructor;
+
 import java.util.function.Function;
 
 /**
@@ -13,16 +15,11 @@ import java.util.function.Function;
  *   converted value type
  * @author leonzio
  */
+@AllArgsConstructor
 final class ValueMapper<S, T, V>
 {
   private final Function<S, V> converter;
   private final Setter<T, V> setter;
-
-  ValueMapper(Function<S, V> converter, Setter<T, V> setter)
-  {
-    this.converter = converter;
-    this.setter = setter;
-  }
 
   /**
    * Fills target with value converted from source object.

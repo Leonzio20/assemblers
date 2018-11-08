@@ -1,5 +1,7 @@
 package com.sdp.common.assemblers;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Interface for passing setter by method reference.
  *
@@ -20,5 +22,5 @@ public interface Setter<T, V>
    * @param value
    *   to set on target
    */
-  void set(T target, V value);
+  void set(@NotNull T target, V value);
 }

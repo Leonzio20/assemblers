@@ -1,5 +1,7 @@
 package com.sdp.common.assemblers;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Factory for creating assembler instance.
  *
@@ -11,11 +13,22 @@ package com.sdp.common.assemblers;
  */
 public abstract class AssemblerFactory<S, T> implements Assembler<S, T>
 {
+  private Assembler<S, T> assembler;
+
   @Override
   public final T assemble(S source)
   {
-    Assembler<S, T> assembler = createAssemblerFactory();
+    Assembler<S, T> assembler = getAssemblerInstance();
     return assembler.assemble(source);
+  }
+
+  private @NotNull Assembler<S, T> getAssemblerInstance()
+  {
+    if (assembler == null)
+    {
+      assembler = createAssemblerFactory();
+    }
+    return assembler;
   }
 
   /**
@@ -23,5 +36,5 @@ public abstract class AssemblerFactory<S, T> implements Assembler<S, T>
    *
    * @return assembler
    */
-  protected abstract Assembler<S, T> createAssemblerFactory();
+  protected abstract @NotNull Assembler<S, T> createAssemblerFactory();
 }

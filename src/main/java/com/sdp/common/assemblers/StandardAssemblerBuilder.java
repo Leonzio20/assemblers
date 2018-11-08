@@ -1,5 +1,7 @@
 package com.sdp.common.assemblers;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Standard builder fo assembler.
  *
@@ -18,16 +20,25 @@ public interface StandardAssemblerBuilder<S, T>
    *   to get value to set
    * @param <V>
    *   returned value type
-   * @return extracted value
+   * @return sub builder for
    */
-  <V> AssemblerBuilder<S, T, V> from(Getter<S, V> getter);
+  <V> @NotNull AssemblerBuilder<S, T, V> from(@NotNull Getter<S, V> getter);
+
+  /**
+   * Excludes method from assembling.
+   *
+   * @param getter
+   *   to exclude
+   * @return this for chained build
+   */
+  @NotNull StandardAssemblerBuilder<S, T> ignore(@NotNull Getter<S, ?> getter);
 
   /**
    * Builds new assembler.
    *
    * @return new assembler with configured mappings
    */
-  Assembler<S, T> build();
+  @NotNull Assembler<S, T> build();
 
   /**
    * Creates new assembler builder instance.
@@ -42,7 +53,8 @@ public interface StandardAssemblerBuilder<S, T>
    *   Target object type
    * @return builder instance
    */
-  static <S, T> StandardAssemblerBuilder<S, T> create(Class<S> sourceClass, Class<T> targetClass)
+  static <S, T> @NotNull StandardAssemblerBuilder<S, T> create(@NotNull Class<S> sourceClass,
+    @NotNull Class<T> targetClass)
   {
     return new StandardAssemblerBuilderImpl<>(sourceClass, targetClass);
   }
