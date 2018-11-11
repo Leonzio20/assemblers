@@ -1,5 +1,7 @@
 package com.sdp.common.assemblers;
 
+import com.sdp.common.util.Setter;
+
 import javax.validation.constraints.NotNull;
 import java.util.function.Function;
 

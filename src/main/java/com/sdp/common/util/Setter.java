@@ -1,4 +1,4 @@
-package com.sdp.common.assemblers;
+package com.sdp.common.util;
 
 import javax.validation.constraints.NotNull;
 

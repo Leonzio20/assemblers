@@ -1,6 +1,7 @@
 package com.sdp.common.assemblers;
 
 import com.google.common.collect.ImmutableSet;
+import com.sdp.common.util.Getter;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;

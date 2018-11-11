@@ -1,5 +1,6 @@
 package com.sdp.common.assemblers;
 
+import com.sdp.common.util.Getter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

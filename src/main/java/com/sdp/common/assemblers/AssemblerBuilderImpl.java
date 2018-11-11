@@ -1,5 +1,7 @@
 package com.sdp.common.assemblers;
 
+import com.sdp.common.util.Getter;
+import com.sdp.common.util.Setter;
 import lombok.AllArgsConstructor;
 
 import javax.validation.constraints.NotNull;
