@@ -93,7 +93,6 @@ class AssemblerTest
     assertThat(target).isNotNull()
       .returns(id, TargetSecondDTO::getId)
       .returns(innerName, TargetSecondDTO::getTargetInnerName);
-
   }
 
   @Test
@@ -173,6 +172,38 @@ class AssemblerTest
     assertThatThrownBy(() -> sourceTargetDTOAssembler.assemble(source))
       .isInstanceOf(IllegalStateException.class)
       .hasMessage("Cannot create target object of class com.sdp.common.assemblers.AssemblerTest$TargetThirdDTO");
+  }
+
+  @Test
+  void testUsingMapWithNullSafe()
+  {
+    Assembler<Source, TargetSecondDTO> sourceTargetSecondDTOAssembler = new AssemblerFactory<Source, TargetSecondDTO>()
+    {
+      @Override
+      protected Assembler<Source, TargetSecondDTO> createAssemblerFactory()
+      {
+        return StandardAssemblerBuilder.create(Source.class, TargetSecondDTO.class)
+          .from(Source::getId)
+          .to(TargetSecondDTO::setId)
+          .from(Source::getSourceInner)
+          .nullSafe()
+          .mapWith(SourceInner::getName)
+          .to(TargetSecondDTO::setTargetInnerName)
+          .build();
+      }
+    };
+
+    Long id = 1L;
+
+    Source source = mock(Source.class);
+    when(source.getSourceInner()).thenReturn(null);
+    when(source.getId()).thenReturn(id);
+
+    TargetSecondDTO target = sourceTargetSecondDTOAssembler.assemble(source);
+
+    assertThat(target).isNotNull()
+      .returns(id, TargetSecondDTO::getId)
+      .returns(null, TargetSecondDTO::getTargetInnerName);
   }
 
   @Setter

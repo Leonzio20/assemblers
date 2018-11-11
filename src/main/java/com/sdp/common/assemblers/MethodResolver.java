@@ -41,7 +41,7 @@ class MethodResolver<S>
     ignoredMethods.add(methodName);
   }
 
-  void checkUsedFields()
+  void validate()
   {
     Set<String> sourceFields = Stream.of(sourceClass.getDeclaredFields())
       .filter(field -> !field.isSynthetic())

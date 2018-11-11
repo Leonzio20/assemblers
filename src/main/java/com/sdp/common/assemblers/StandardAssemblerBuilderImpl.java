@@ -58,7 +58,7 @@ final class StandardAssemblerBuilderImpl<S, T> implements StandardAssemblerBuild
   @Override
   public @NotNull Assembler<S, T> build()
   {
-    methodResolver.checkUsedFields();
+    methodResolver.validate();
     return this::fillTargetObject;
   }
 

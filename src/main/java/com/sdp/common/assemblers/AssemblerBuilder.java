@@ -39,6 +39,13 @@ public interface AssemblerBuilder<S, T, V>
   <X> @NotNull AssemblerBuilder<S, T, X> assembleWith(@NotNull Assembler<V, X> assembler);
 
   /**
+   * Null safety. Use if in previous step you expect to receive a null value.
+   *
+   * @return same builder with null safe converting method
+   */
+  @NotNull AssemblerBuilder<S, T, V> nullSafe();
+
+  /**
    * Ends standard mappings.
    *
    * @param setter
