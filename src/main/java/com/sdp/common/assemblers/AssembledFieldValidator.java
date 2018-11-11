@@ -2,13 +2,10 @@ package com.sdp.common.assemblers;
 
 import com.google.common.collect.ImmutableSet;
 import com.sdp.common.util.Getter;
+import com.sdp.common.util.MethodNameResolver;
 
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
-import java.lang.invoke.SerializedLambda;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,26 +16,26 @@ import java.util.stream.Stream;
  *   source class type
  * @author leonzio
  */
-class MethodResolver<S>
+class AssembledFieldValidator<S>
 {
   private final Class<S> sourceClass;
   private final Set<String> calledMethods = new HashSet<>();
   private final Set<String> ignoredMethods = new HashSet<>();
 
-  MethodResolver(@NotNull Class<S> sourceClass)
+  AssembledFieldValidator(@NotNull Class<S> sourceClass)
   {
     this.sourceClass = sourceClass;
   }
 
   <V> void resolveCalled(@NotNull Getter<S, V> getter)
   {
-    String methodName = resolveMethodName(getter);
+    String methodName = MethodNameResolver.resolveMethodName(getter);
     calledMethods.add(methodName);
   }
 
   void resolveIgnored(@NotNull Getter<S, ?> getter)
   {
-    String methodName = resolveMethodName(getter);
+    String methodName = MethodNameResolver.resolveMethodName(getter);
     ignoredMethods.add(methodName);
   }
 
@@ -70,21 +67,5 @@ class MethodResolver<S>
     }
     throw new IllegalArgumentException("Those fields should be assembled or ignored: " + sourceFields.stream()
       .collect(Collectors.joining(", ")));
-  }
-
-  private <V, G extends Getter<S, V> & Serializable> String resolveMethodName(G getter)
-  {
-    try
-    {
-      Class<?> getterClass = getter.getClass();
-      Method writeReplace = getterClass.getDeclaredMethod("writeReplace");
-      writeReplace.setAccessible(true);
-      SerializedLambda serializedLambda = (SerializedLambda) writeReplace.invoke(getter);
-      return serializedLambda.getImplMethodName();
-    }
-    catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e)
-    {
-      throw new RuntimeException("Cannot resolve method name", e);
-    }
   }
 }

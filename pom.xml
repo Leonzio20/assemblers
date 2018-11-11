@@ -24,7 +24,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <code-coverage.instructions>0.97</code-coverage.instructions>
+    <code-coverage.instructions>0.99</code-coverage.instructions>
 
     <lombok.version>1.18.0</lombok.version>
     <guava.version>r05</guava.version>
@@ -165,6 +165,9 @@
               <rules>
                 <rule implementation="org.jacoco.maven.RuleConfiguration">
                   <element>PACKAGE</element>
+                  <includes>
+                    <include>com.sdp.common.assemblers</include>
+                  </includes>
                   <limits>
                     <limit implementation="org.jacoco.report.check.Limit">
                       <counter>INSTRUCTION</counter>
