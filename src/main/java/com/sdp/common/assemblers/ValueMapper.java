@@ -8,12 +8,6 @@ import java.util.function.Function;
 /**
  * Maps value from source object and sets it on the target.
  *
- * @param <S>
- *   source object type
- * @param <T>
- *   target object type
- * @param <V>
- *   converted value type
  * @author leonzio
  */
 @AllArgsConstructor

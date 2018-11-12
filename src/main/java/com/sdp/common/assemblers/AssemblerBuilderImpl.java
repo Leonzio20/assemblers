@@ -6,12 +6,10 @@ import lombok.AllArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Function;
 
 /**
- * @param <S>
- * @param <T>
- * @param <V>
  * @author leonzio
  */
 @AllArgsConstructor
@@ -56,10 +54,9 @@ final class AssemblerBuilderImpl<S, T, V> implements AssemblerBuilder<S, T, V>
       public <X> Function<S, X> andThen(Function<? super V, ? extends X> after)
       {
         Objects.requireNonNull(after);
-        return (S s) -> {
-          V v = apply(s);
-          return v == null ? null : after.apply(v);
-        };
+        return (S s) -> Optional.ofNullable(apply(s))
+          .map(after::apply)
+          .orElse(null);
       }
     };
     return new AssemblerBuilderImpl<>(builder, newConverter);

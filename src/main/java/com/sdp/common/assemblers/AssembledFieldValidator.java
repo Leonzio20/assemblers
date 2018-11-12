@@ -3,6 +3,7 @@ package com.sdp.common.assemblers;
 import com.google.common.collect.ImmutableSet;
 import com.sdp.common.util.Getter;
 import com.sdp.common.util.MethodNameResolver;
+import lombok.AllArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 import java.lang.reflect.Field;
@@ -12,20 +13,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * @param <S>
- *   source class type
  * @author leonzio
  */
+@AllArgsConstructor
 class AssembledFieldValidator<S>
 {
   private final Class<S> sourceClass;
   private final Set<String> calledMethods = new HashSet<>();
   private final Set<String> ignoredMethods = new HashSet<>();
-
-  AssembledFieldValidator(@NotNull Class<S> sourceClass)
-  {
-    this.sourceClass = sourceClass;
-  }
 
   <V> void resolveCalled(@NotNull Getter<S, V> getter)
   {

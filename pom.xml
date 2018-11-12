@@ -24,7 +24,6 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <code-coverage.instructions>0.99</code-coverage.instructions>
 
     <lombok.version>1.18.0</lombok.version>
     <guava.version>r05</guava.version>
@@ -172,7 +171,7 @@
                     <limit implementation="org.jacoco.report.check.Limit">
                       <counter>INSTRUCTION</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>${code-coverage.instructions}</minimum>
+                      <minimum>1.0</minimum>
                     </limit>
                   </limits>
                 </rule>
