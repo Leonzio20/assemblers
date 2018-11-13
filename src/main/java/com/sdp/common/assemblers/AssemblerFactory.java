@@ -1,5 +1,7 @@
 package com.sdp.common.assemblers;
 
+import java.util.Optional;
+
 import javax.validation.constraints.NotNull;
 
 /**
@@ -9,6 +11,7 @@ import javax.validation.constraints.NotNull;
  *   source object type
  * @param <T>
  *   target object type
+ *
  * @author leonzio
  */
 public abstract class AssemblerFactory<S, T> implements Assembler<S, T>
@@ -24,11 +27,8 @@ public abstract class AssemblerFactory<S, T> implements Assembler<S, T>
 
   private @NotNull Assembler<S, T> getAssemblerInstance()
   {
-    if (assembler == null)
-    {
-      assembler = createAssemblerFactory();
-    }
-    return assembler;
+    return Optional.ofNullable(assembler)
+      .orElseGet(() -> assembler = createAssemblerFactory());
   }
 
   /**

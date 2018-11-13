@@ -5,9 +5,13 @@ import java.lang.invoke.SerializedLambda;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 /**
  * @author leonzio
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class MethodNameResolver
 {
   /**
@@ -15,11 +19,10 @@ public final class MethodNameResolver
    *
    * @param method
    *   to resolve name from
-   * @param <M>
-   *   type of passed method. Must implements {@link Serializable}.
+   *
    * @return method name
    */
-  public static <M extends Serializable> String resolveMethodName(M method)
+  public static <S, T> String resolveMethodName(Getter<S, T> method)
   {
     Class<?> methodClass = method.getClass();
     Method writeReplace;
@@ -29,17 +32,17 @@ public final class MethodNameResolver
     }
     catch (NoSuchMethodException e)
     {
-      throw new RuntimeException("Method must implement a " + Serializable.class, e);
+      throw new IllegalStateException("Method must implement a " + Serializable.class, e);
     }
-    writeReplace.setAccessible(true);
     SerializedLambda serializedLambda;
+    writeReplace.setAccessible(true);
     try
     {
       serializedLambda = (SerializedLambda) writeReplace.invoke(method);
     }
     catch (IllegalAccessException | InvocationTargetException e)
     {
-      throw new RuntimeException("", e);
+      throw new IllegalStateException("Cannot access method", e);
     }
     return serializedLambda.getImplMethodName();
   }

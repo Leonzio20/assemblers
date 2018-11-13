@@ -1,16 +1,16 @@
 package com.sdp.common.assemblers;
 
-import com.google.common.collect.ImmutableSet;
-import com.sdp.common.util.Getter;
-import com.sdp.common.util.MethodNameResolver;
-import lombok.AllArgsConstructor;
-
-import javax.validation.constraints.NotNull;
 import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import com.google.common.collect.ImmutableSet;
+import com.sdp.common.util.Getter;
+import com.sdp.common.util.MethodNameResolver;
+import javax.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 
 /**
  * @author leonzio

@@ -1,7 +1,8 @@
 package com.sdp.common.util;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * Interface for passing getter by method reference.
@@ -10,6 +11,7 @@ import java.io.Serializable;
  *   source object type
  * @param <V>
  *   returned value type
+ *
  * @author leonzio
  */
 @FunctionalInterface
@@ -20,6 +22,7 @@ public interface Getter<S, V> extends Serializable
    *
    * @param source
    *   to get value from
+   *
    * @return value from source
    */
   V get(@NotNull S source);

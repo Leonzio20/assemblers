@@ -162,16 +162,32 @@
             </goals>
             <configuration>
               <rules>
+                <!--Full coverage-->
                 <rule implementation="org.jacoco.maven.RuleConfiguration">
                   <element>PACKAGE</element>
-                  <includes>
-                    <include>com.sdp.common.assemblers</include>
-                  </includes>
+                  <excludes>
+                    <exclude>com.sdp.common.util</exclude>
+                  </excludes>
                   <limits>
                     <limit implementation="org.jacoco.report.check.Limit">
                       <counter>INSTRUCTION</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>1.0</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+
+                <!--Partial coverage-->
+                <rule implementation="org.jacoco.maven.RuleConfiguration">
+                  <element>PACKAGE</element>
+                  <includes>
+                    <include>com.sdp.common.util</include>
+                  </includes>
+                  <limits>
+                    <limit implementation="org.jacoco.report.check.Limit">
+                      <counter>INSTRUCTION</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.83</minimum>
                     </limit>
                   </limits>
                 </rule>

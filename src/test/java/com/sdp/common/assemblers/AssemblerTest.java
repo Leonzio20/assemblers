@@ -1,16 +1,17 @@
 package com.sdp.common.assemblers;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.same;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import lombok.Getter;
 import lombok.Setter;
 import name.falgout.jeffrey.testing.junit.mockito.MockitoExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 /**
  * @author leonzio
@@ -22,7 +23,7 @@ class AssemblerTest
   private Assembler<SourceInner, TargetInnerDTO> sourceInnerTargetInnerDTOAssembler;
 
   @Test
-  void testFullWithStandardAssemblers()
+  void testFullWithAssembleWithSourceInner()
   {
     Assembler<Source, TargetDTO> sourceTargetDTOAssembler = new AssemblerFactory<Source, TargetDTO>()
     {
@@ -40,18 +41,15 @@ class AssemblerTest
     };
 
     Long id = 1L;
-    String innerName = "name";
 
     SourceInner sourceInner = mock(SourceInner.class);
-    when(sourceInner.getName()).thenReturn(innerName);
-
-    Source source = mock(Source.class);
-    when(source.getSourceInner()).thenReturn(sourceInner);
-    when(source.getId()).thenReturn(id);
-
     TargetInnerDTO targetInnerDTO = mock(TargetInnerDTO.class);
 
-    when(sourceInnerTargetInnerDTOAssembler.assemble(sourceInner)).thenReturn(targetInnerDTO);
+    Source source = mock(Source.class);
+    when(source.getId()).thenReturn(id);
+    when(source.getSourceInner()).thenReturn(sourceInner);
+
+    when(sourceInnerTargetInnerDTOAssembler.assemble(same(sourceInner))).thenReturn(targetInnerDTO);
 
     TargetDTO target = sourceTargetDTOAssembler.assemble(source);
 
@@ -149,32 +147,6 @@ class AssemblerTest
   }
 
   @Test
-  void testTargetObjectWithoutNonArgsConstructor()
-  {
-    Assembler<Source, TargetThirdDTO> sourceTargetDTOAssembler = new AssemblerFactory<Source, TargetThirdDTO>()
-    {
-      @Override
-      protected Assembler<Source, TargetThirdDTO> createAssemblerFactory()
-      {
-        return StandardAssemblerBuilder.create(Source.class, TargetThirdDTO.class)
-          .from(Source::getId)
-          .to(TargetThirdDTO::setId)
-          .ignore(Source::getSourceInner)
-          .build();
-      }
-    };
-
-    Long id = 1L;
-
-    Source source = mock(Source.class);
-    when(source.getId()).thenReturn(id);
-
-    assertThatThrownBy(() -> sourceTargetDTOAssembler.assemble(source))
-      .isInstanceOf(IllegalStateException.class)
-      .hasMessage("Cannot create target object of class com.sdp.common.assemblers.AssemblerTest$TargetThirdDTO");
-  }
-
-  @Test
   void testUsingMapWithNullSafe()
   {
     Assembler<Source, TargetSecondDTO> sourceTargetSecondDTOAssembler = new AssemblerFactory<Source, TargetSecondDTO>()
@@ -242,19 +214,5 @@ class AssemblerTest
   {
     private Long id;
     private String targetInnerName;
-  }
-
-  @Setter
-  @Getter
-  private static class TargetThirdDTO
-  {
-    public TargetThirdDTO(Long id, TargetInnerDTO targetInner)
-    {
-      this.id = id;
-      this.targetInner = targetInner;
-    }
-
-    private Long id;
-    private TargetInnerDTO targetInner;
   }
 }

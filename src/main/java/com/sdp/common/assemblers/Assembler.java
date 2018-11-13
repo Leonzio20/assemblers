@@ -7,6 +7,7 @@ package com.sdp.common.assemblers;
  *   source object type
  * @param <T>
  *   target object type
+ *
  * @author leonzio
  */
 public interface Assembler<S, T>
@@ -16,6 +17,7 @@ public interface Assembler<S, T>
    *
    * @param source
    *   to assembled from
+   *
    * @return assembled object result
    */
   T assemble(S source);

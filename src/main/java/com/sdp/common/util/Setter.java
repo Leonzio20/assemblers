@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
  *   target object type
  * @param <V>
  *   value to set type
+ *
  * @author leonzio
  */
 @FunctionalInterface

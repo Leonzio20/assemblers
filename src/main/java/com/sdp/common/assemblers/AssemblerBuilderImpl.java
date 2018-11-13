@@ -1,13 +1,13 @@
 package com.sdp.common.assemblers;
 
-import com.sdp.common.util.Getter;
-import com.sdp.common.util.Setter;
-import lombok.AllArgsConstructor;
-
-import javax.validation.constraints.NotNull;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
+
+import com.sdp.common.util.Getter;
+import com.sdp.common.util.Setter;
+import javax.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 
 /**
  * @author leonzio

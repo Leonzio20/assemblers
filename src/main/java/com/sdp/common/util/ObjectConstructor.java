@@ -3,9 +3,13 @@ package com.sdp.common.util;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 /**
  * @author leonzio
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ObjectConstructor
 {
   /**
@@ -15,6 +19,7 @@ public final class ObjectConstructor
    *   to create new object
    * @param <C>
    *   new object class
+   *
    * @return created object
    */
   public static <C> C construct(Class<C> objectClass)

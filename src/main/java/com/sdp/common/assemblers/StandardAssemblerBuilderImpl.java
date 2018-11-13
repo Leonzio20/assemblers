@@ -1,14 +1,14 @@
 package com.sdp.common.assemblers;
 
+import java.util.Set;
+
 import com.google.common.collect.ImmutableSet;
 import com.sdp.common.util.Getter;
 import com.sdp.common.util.ObjectConstructor;
+import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import javax.validation.constraints.NotNull;
-import java.util.Set;
 
 /**
  * @author leonzio

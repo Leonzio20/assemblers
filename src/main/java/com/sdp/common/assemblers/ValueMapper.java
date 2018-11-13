@@ -1,9 +1,9 @@
 package com.sdp.common.assemblers;
 
+import java.util.function.Function;
+
 import com.sdp.common.util.Setter;
 import lombok.AllArgsConstructor;
-
-import java.util.function.Function;
 
 /**
  * Maps value from source object and sets it on the target.

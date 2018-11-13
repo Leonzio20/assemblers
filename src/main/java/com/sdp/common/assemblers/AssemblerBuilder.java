@@ -1,9 +1,9 @@
 package com.sdp.common.assemblers;
 
-import com.sdp.common.util.Setter;
-
-import javax.validation.constraints.NotNull;
 import java.util.function.Function;
+
+import com.sdp.common.util.Setter;
+import javax.validation.constraints.NotNull;
 
 /**
  * Builder for standard assembler conversions.
@@ -14,6 +14,7 @@ import java.util.function.Function;
  *   target object type
  * @param <V>
  *   type of value to convert from
+ *
  * @author leonzio
  */
 public interface AssemblerBuilder<S, T, V>
@@ -25,6 +26,7 @@ public interface AssemblerBuilder<S, T, V>
    *   to map value
    * @param <X>
    *   type of value to convert to
+   *
    * @return this for chained build
    */
   <X> @NotNull AssemblerBuilder<S, T, X> mapWith(@NotNull Function<V, X> mapper);
@@ -36,6 +38,7 @@ public interface AssemblerBuilder<S, T, V>
    *   to assemble the value
    * @param <X>
    *   type of {@link Assembler#assemble(Object)} result
+   *
    * @return this for chained build
    */
   <X> @NotNull AssemblerBuilder<S, T, X> assembleWith(@NotNull Assembler<V, X> assembler);
@@ -52,6 +55,7 @@ public interface AssemblerBuilder<S, T, V>
    *
    * @param setter
    *   to sets mapped value
+   *
    * @return standard builder
    */
   @NotNull StandardAssemblerBuilder<S, T> to(@NotNull Setter<T, V> setter);
