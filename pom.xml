@@ -33,6 +33,7 @@
 
     <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
     <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
+    <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
 
     <junit-jupiter.version>5.2.0</junit-jupiter.version>
     <junit-platform-surefire-provider.version>1.0.3</junit-platform-surefire-provider.version>
@@ -63,7 +64,7 @@
 
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
+      <artifactId>log4j-api</artifactId>
       <version>${log4j.version}</version>
     </dependency>
 
@@ -75,21 +76,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>${junit-jupiter.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
       <version>${assertj.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.platform</groupId>
-      <artifactId>junit-platform-surefire-provider</artifactId>
-      <version>${junit-platform-surefire-provider.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -192,6 +181,23 @@
                   </limits>
                 </rule>
               </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>${maven-dependency-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>analyze</id>
+            <goals>
+              <goal>analyze-only</goal>
+            </goals>
+            <configuration>
+              <failOnWarning>true</failOnWarning>
             </configuration>
           </execution>
         </executions>
