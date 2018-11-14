@@ -2,6 +2,7 @@
 Simple way to a assemble one object to another (eg. entity to dto).
 
 Example usage:
+```
   class AssemblerClass extends AssemblerFactory<Source, TargetDTO>
   {
     @Override
@@ -16,3 +17,4 @@ Example usage:
         .build();
     }
   }
+```
