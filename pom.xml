@@ -4,7 +4,7 @@
 
   <groupId>com.sdp.common</groupId>
   <artifactId>assemblers</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
 
   <name>Assemblers</name>
   <description>Standard Developer Pack - Assemblers module</description>
@@ -24,7 +24,7 @@
     <connection>scm:git:git://github.com/Leonzio20/assemblers.git</connection>
     <developerConnection>scm:git:git@github.com:Leonzio20/assemblers.git</developerConnection>
     <url>http://github.com/Leonzio20/assemblers</url>
-    <tag>assemblers-1.0.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <properties>
