@@ -55,7 +55,7 @@ final class AssemblerBuilderImpl<S, T, V> implements AssemblerBuilder<S, T, V>
       {
         Objects.requireNonNull(after);
         return (S s) -> Optional.ofNullable(apply(s))
-          .map(after::apply)
+          .map(after)
           .orElse(null);
       }
     };

@@ -60,7 +60,7 @@ class AssembledFieldValidator<S>
     {
       return;
     }
-    throw new IllegalArgumentException("Those fields should be assembled or ignored: " + sourceFields.stream()
-      .collect(Collectors.joining(", ")));
+    String ignoredFields = String.join(", ", sourceFields);
+    throw new IllegalArgumentException("Those fields should be assembled or ignored: " + ignoredFields);
   }
 }

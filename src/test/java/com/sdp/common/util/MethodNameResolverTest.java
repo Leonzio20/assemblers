@@ -6,9 +6,9 @@ import static org.mockito.Mockito.mock;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import name.falgout.jeffrey.testing.junit.mockito.MockitoExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
  * @author leonzio

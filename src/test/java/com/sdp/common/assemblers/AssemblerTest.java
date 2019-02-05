@@ -8,10 +8,10 @@ import static org.mockito.Mockito.when;
 
 import lombok.Getter;
 import lombok.Setter;
-import name.falgout.jeffrey.testing.junit.mockito.MockitoExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
  * @author leonzio
@@ -136,10 +136,7 @@ class AssemblerTest
       }
     };
 
-    Long id = 1L;
-
     Source source = mock(Source.class);
-    when(source.getId()).thenReturn(id);
 
     assertThatThrownBy(() -> sourceTargetDTOAssembler.assemble(source))
       .isInstanceOf(IllegalArgumentException.class)
