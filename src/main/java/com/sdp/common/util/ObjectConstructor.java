@@ -3,6 +3,7 @@ package com.sdp.common.util;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
+import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -22,7 +23,7 @@ public final class ObjectConstructor
    *
    * @return created object
    */
-  public static <C> C construct(Class<C> objectClass)
+  public static <C> @NotNull C construct(@NotNull Class<C> objectClass)
   {
     try
     {

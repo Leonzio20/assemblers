@@ -5,6 +5,7 @@ import java.lang.invoke.SerializedLambda;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -22,7 +23,7 @@ public final class MethodNameResolver
    *
    * @return method name
    */
-  public static <S, T> String resolveMethodName(Getter<S, T> method)
+  public static <S, T> @NotNull String resolveMethodName(@NotNull Getter<S, T> method)
   {
     Class<?> methodClass = method.getClass();
     Method writeReplace;

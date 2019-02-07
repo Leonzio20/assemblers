@@ -1,5 +1,6 @@
 package com.sdp.common.util;
 
+import javax.annotation.Nullable;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -23,5 +24,5 @@ public interface Setter<T, V>
    * @param value
    *   to set on target
    */
-  void set(@NotNull T target, V value);
+  void set(@NotNull T target, @Nullable V value);
 }

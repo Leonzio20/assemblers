@@ -6,16 +6,18 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.google.common.collect.ImmutableSet;
 import com.sdp.common.util.Getter;
 import com.sdp.common.util.MethodNameResolver;
+
+import com.google.common.collect.ImmutableSet;
 import javax.validation.constraints.NotNull;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
 /**
  * @author leonzio
  */
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 class AssembledFieldValidator<S>
 {
   private final Class<S> sourceClass;
@@ -49,7 +51,7 @@ class AssembledFieldValidator<S>
         .build()
         .stream()
         .map(String::toLowerCase)
-        .anyMatch(m -> m.endsWith(field.toLowerCase()));
+        .anyMatch(methodName -> methodName.endsWith(field.toLowerCase()));
       if (anyMatch)
       {
         usedFields.add(field);

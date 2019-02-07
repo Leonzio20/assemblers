@@ -2,6 +2,8 @@ package com.sdp.common.util;
 
 import java.io.Serializable;
 
+import javax.annotation.Nullable;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -25,5 +27,6 @@ public interface Getter<S, V> extends Serializable
    *
    * @return value from source
    */
+  @Nullable
   V get(@NotNull S source);
 }

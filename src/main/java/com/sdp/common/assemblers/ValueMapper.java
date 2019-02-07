@@ -3,6 +3,9 @@ package com.sdp.common.assemblers;
 import java.util.function.Function;
 
 import com.sdp.common.util.Setter;
+
+import javax.validation.constraints.NotNull;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
 /**
@@ -10,7 +13,7 @@ import lombok.AllArgsConstructor;
  *
  * @author leonzio
  */
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 final class ValueMapper<S, T, V>
 {
   private final Function<S, V> converter;
@@ -24,7 +27,7 @@ final class ValueMapper<S, T, V>
    * @param target
    *   object to set value to
    */
-  void fill(S source, T target)
+  void fill(@NotNull S source, @NotNull T target)
   {
     V converted = converter.apply(source);
     setter.set(target, converted);

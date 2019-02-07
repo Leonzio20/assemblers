@@ -6,13 +6,15 @@ import java.util.function.Function;
 
 import com.sdp.common.util.Getter;
 import com.sdp.common.util.Setter;
+
 import javax.validation.constraints.NotNull;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
 /**
  * @author leonzio
  */
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 final class AssemblerBuilderImpl<S, T, V> implements AssemblerBuilder<S, T, V>
 {
   private final @NotNull StandardAssemblerBuilderImpl<S, T> builder;

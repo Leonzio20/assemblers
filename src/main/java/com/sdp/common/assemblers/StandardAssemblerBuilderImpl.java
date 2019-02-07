@@ -2,17 +2,19 @@ package com.sdp.common.assemblers;
 
 import java.util.Set;
 
-import com.google.common.collect.ImmutableSet;
 import com.sdp.common.util.Getter;
 import com.sdp.common.util.ObjectConstructor;
+
+import com.google.common.collect.ImmutableSet;
 import javax.validation.constraints.NotNull;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 /**
  * @author leonzio
  */
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Log4j2
 final class StandardAssemblerBuilderImpl<S, T> implements StandardAssemblerBuilder<S, T>
 {
