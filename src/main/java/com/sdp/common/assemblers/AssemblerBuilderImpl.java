@@ -1,15 +1,13 @@
 package com.sdp.common.assemblers;
 
-import java.util.Objects;
-import java.util.Optional;
-import java.util.function.Function;
-
 import com.sdp.common.util.Getter;
 import com.sdp.common.util.Setter;
-
-import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+
+import javax.validation.constraints.NotNull;
+import java.util.Optional;
+import java.util.function.Function;
 
 /**
  * @author leonzio
@@ -20,8 +18,7 @@ final class AssemblerBuilderImpl<S, T, V> implements AssemblerBuilder<S, T, V>
   private final @NotNull StandardAssemblerBuilderImpl<S, T> builder;
   private final @NotNull Function<S, V> converter;
 
-  static <S, T, V> @NotNull AssemblerBuilderImpl<S, T, V> of(@NotNull StandardAssemblerBuilderImpl<S, T> builder,
-    @NotNull Getter<S, V> getter)
+  static <S, T, V> @NotNull AssemblerBuilderImpl<S, T, V> of(@NotNull StandardAssemblerBuilderImpl<S, T> builder, @NotNull Getter<S, V> getter)
   {
     Function<S, V> newConverter = getter::get;
     return new AssemblerBuilderImpl<>(builder, newConverter);
@@ -53,9 +50,8 @@ final class AssemblerBuilderImpl<S, T, V> implements AssemblerBuilder<S, T, V>
       }
 
       @Override
-      public <X> Function<S, X> andThen(Function<? super V, ? extends X> after)
+      public <X> Function<S, X> andThen(@NotNull Function<? super V, ? extends X> after)
       {
-        Objects.requireNonNull(after);
         return (S s) -> Optional.ofNullable(apply(s))
           .map(after)
           .orElse(null);
@@ -67,8 +63,7 @@ final class AssemblerBuilderImpl<S, T, V> implements AssemblerBuilder<S, T, V>
   @Override
   public @NotNull StandardAssemblerBuilder<S, T> to(@NotNull Setter<T, V> setter)
   {
-    ValueMapper<S, T, ?> valueMapper = new ValueMapper<>(converter, setter);
-    //noinspection unchecked
-    return new StandardAssemblerBuilderImpl(builder, valueMapper);
+    ValueMapper<S, T, ?> valueMapper = ValueMapper.of(converter, setter);
+    return new StandardAssemblerBuilderImpl<>(builder, valueMapper);
   }
 }

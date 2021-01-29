@@ -3,7 +3,6 @@ package com.sdp.common.util;
 import java.io.Serializable;
 
 import javax.annotation.Nullable;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 /**

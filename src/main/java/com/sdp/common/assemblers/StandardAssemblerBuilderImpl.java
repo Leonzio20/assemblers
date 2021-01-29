@@ -14,8 +14,8 @@ import lombok.extern.log4j.Log4j2;
 /**
  * @author leonzio
  */
-@AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Log4j2
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 final class StandardAssemblerBuilderImpl<S, T> implements StandardAssemblerBuilder<S, T>
 {
   private final Class<T> targetClass;

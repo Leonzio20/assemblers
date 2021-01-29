@@ -20,9 +20,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 class AssembledFieldValidator<S>
 {
-  private final Class<S> sourceClass;
   private final Set<String> calledMethods = new HashSet<>();
   private final Set<String> ignoredMethods = new HashSet<>();
+  private final Class<S> sourceClass;
 
   <V> void resolveCalled(@NotNull Getter<S, V> getter)
   {

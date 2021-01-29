@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
  *
  * @author leonzio
  */
-@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@AllArgsConstructor(access = AccessLevel.PACKAGE, staticName = "of")
 final class ValueMapper<S, T, V>
 {
   private final Function<S, V> converter;

@@ -24,7 +24,7 @@
   <scm>
     <connection>scm:git:git://github.com/Leonzio20/assemblers.git</connection>
     <developerConnection>scm:git:git@github.com:Leonzio20/assemblers.git</developerConnection>
-    <url>http://github.com/Leonzio20/assemblers</url>
+    <url>https://github.com/Leonzio20/assemblers</url>
     <tag>HEAD</tag>
   </scm>
 

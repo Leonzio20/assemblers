@@ -1,6 +1,6 @@
 # Assemblers library
-Simple way to a assemble one object to another (eg. entity to dto).
-Provides functionality that checks if all of source fields are served in some way, prescribed or ignored.
+Simple way to an assembly one object to another (e.g. entity to dto).
+Provides functionality that checks if all the source fields are served in some way, prescribed or ignored.
 
 Example usage:
 ```
