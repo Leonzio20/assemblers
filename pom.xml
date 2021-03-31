@@ -33,7 +33,7 @@
 
     <lombok.version>1.18.4</lombok.version>
     <log4j.version>2.11.1</log4j.version>
-    <guava.version>27.0-jre</guava.version>
+    <guava.version>29.0-jre</guava.version>
 
     <bean-validation.version>2.0.1.Final</bean-validation.version>
     <hibernate-validator.version>6.0.2.Final</hibernate-validator.version>
