@@ -32,7 +32,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <lombok.version>1.18.4</lombok.version>
-    <log4j.version>2.11.1</log4j.version>
+    <log4j.version>2.16.0</log4j.version>
     <guava.version>27.0-jre</guava.version>
 
     <bean-validation.version>2.0.1.Final</bean-validation.version>
